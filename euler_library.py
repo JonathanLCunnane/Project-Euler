@@ -109,6 +109,14 @@ class Factors:
                     Factors.prime_factors(num/pos, initial)
                     break
         return initial if not distinct else set(initial)
+class Basic:
+    def int_length(num: int) -> int:
+        """Returns the length of a POSITIVE integer."""
+        counter = 0
+        while num > 0:
+            num //= 10
+            counter += 1
+        return counter
 
 if __name__ == "__main__":
     inpt = int(input("Enter the number of which category you want to test:\n\t1. Primes\n"))
