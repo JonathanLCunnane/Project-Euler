@@ -1,14 +1,4 @@
 class Primes:
-    def fetch_primes_primitive(upper: int=100000, array: bool=False):
-        """OUTDATED."""
-        primes = list(range(0,upper))
-        for num in primes[2:]:
-            if num == 0:
-                continue
-            for multiple_index in range(num*2, upper, num):
-                primes[multiple_index] = 0
-        primes = [num for num in primes if num != 0]
-        return primes if array else set(primes)
     def fetch_primes(upper: int=100000, set: bool=True, raw: bool=False):
         """Returns a set of primes up to `upper`."""
         if upper % 2 == 1: upper += 1
@@ -27,15 +17,16 @@ class Primes:
         return [2] + [prime*2+1 for prime in range(1,int_upper_over_two) if bools[prime]]
     def is_prime(num: int=1) -> bool:
         """Returns **True** if `num` is prime. Otherwise returns **False**."""
-        if num % 1 != 0:
+        # we are using the sieve to initially check a few numbers, and then checknig all numbers in the form 6k +/- 1, as all primes can be represented as such
+        if num <= 3:
+            return (num > 1)
+        if num % 2 == 0 or num % 3 == 0:
             return False
-        else:
-            num = int(num)
-        if int(str(num)[-1]) in {2,4,5,6,8,0} and num != 2 and num != 5: return False
-        if not num or num <= 1: return False
-        end = int(num**(1/2))
-        for check in range(2, end+1):
+        # we use 5 as we will use check to be the 6k - 1 term, therefore adding two to check in (check + 2) gives the 6k  
+        for check in range(5, int(num ** 0.5), 6):
             if num % check == 0:
+                return False
+            if num % (check + 2) == 0:
                 return False
         return True
     def is_coprime(num_one, num_two) -> bool:
@@ -119,14 +110,10 @@ class Basic:
         return counter
 
 if __name__ == "__main__":
-    inpt = int(input("Enter the number of which category you want to test:\n\t1. Primes\n"))
+    print(Primes.is_prime(9133))
+    """inpt = int(input("Enter the number of which category you want to test:\n\t1. Primes\n"))
     from time import perf_counter
     if inpt == 1:
-        """
-        start = perf_counter()
-        Primes.fetch_primes_primitive(10000000)
-        print(f"Primes from 1 - 10,000,000 primitively generated in {(((perf_counter() - start)*100000)//1)/100}ms")
-        """
         start = perf_counter()
         Primes.fetch_primes(1000000000, True, True)
         print(f"Primes from 1 - 1,000,000,000 generated in {(((perf_counter() - start)*100000)//1)/100}ms")
@@ -138,4 +125,4 @@ if __name__ == "__main__":
         for num_1 in range(1, 10000):
             for num_2 in range(1, 10000):
                 Primes.is_coprime(num_1, num_2)
-        print(f"Checked if numbers 1 - 10,000 and 1 - 10,000 are co-prime in {(((perf_counter() - start)*100000)//1)/100}ms")
+        print(f"Checked if numbers 1 - 10,000 and 1 - 10,000 are co-prime in {(((perf_counter() - start)*100000)//1)/100}ms")"""
