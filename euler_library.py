@@ -17,7 +17,7 @@ class Primes:
         return [2] + [prime*2+1 for prime in range(1,int_upper_over_two) if bools[prime]]
     def is_prime(num: int=1) -> bool:
         """Returns **True** if `num` is prime. Otherwise returns **False**."""
-        # we are using the sieve to initially check a few numbers, and then checknig all numbers in the form 6k +/- 1, as all primes can be represented as such
+        # we are initially checking a few numbers, and then checking all numbers in the form 6k +/- 1, as all primes can be represented as such
         if num <= 3:
             return (num > 1)
         if num % 2 == 0 or num % 3 == 0:
