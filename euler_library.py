@@ -110,8 +110,8 @@ class Basic:
         return counter
 
 if __name__ == "__main__":
-    print(Primes.is_prime(9133))
-    """inpt = int(input("Enter the number of which category you want to test:\n\t1. Primes\n"))
+    print(Combinatorics.permutations("345678"))
+    inpt = int(input("Enter the number of which category you want to test:\n\t1. Primes\n"))
     from time import perf_counter
     if inpt == 1:
         start = perf_counter()
@@ -125,4 +125,4 @@ if __name__ == "__main__":
         for num_1 in range(1, 10000):
             for num_2 in range(1, 10000):
                 Primes.is_coprime(num_1, num_2)
-        print(f"Checked if numbers 1 - 10,000 and 1 - 10,000 are co-prime in {(((perf_counter() - start)*100000)//1)/100}ms")"""
+        print(f"Checked if numbers 1 - 10,000 and 1 - 10,000 are co-prime in {(((perf_counter() - start)*100000)//1)/100}ms")

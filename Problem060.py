@@ -58,7 +58,7 @@ def lowest_prime_pair_set(upto) -> list:
             lowest_set = set_found
     return lowest_set, lowest_sum
 start = perf_counter()
-set_of_primes, sum_of_set = lowest_prime_pair_set(30000)
+set_of_primes, sum_of_set = lowest_prime_pair_set(8500)
 print(set_of_primes)
 end = (((perf_counter() - start)*100000)//1)/100
 print(f"The lowest prime pair set with 5 members is {set_of_primes}. The sum is {sum_of_set}.\nThis took {end}ms")
