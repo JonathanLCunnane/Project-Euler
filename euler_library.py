@@ -63,7 +63,7 @@ class Combinatorics:
         arr = list(input)
         arr[index_one], arr[index_two] = arr[index_two], arr[index_one]
         return arr
-    def swaps(input: str, start_index: int = 0, perm_list: list = [], num: int = 1) -> set:
+    def swaps(input: "str | list", start_index: int = 0, perm_list: list = [], num: int = 1) -> set:
         """Returns a list of the number swaps from `start_index` of `input`.\n**NOTE: Do not use unless you know what you are doing!**"""
         if start_index == len(input):
             perm_list.append("".join(input))
@@ -71,8 +71,8 @@ class Combinatorics:
             swapped = Combinatorics.swap(input, start_index, swap)
             Combinatorics.swaps(swapped, start_index + 1, perm_list, num)
         return perm_list
-    def permutations(input: str) -> set:
-        """Returns a set of permutations for a input string `input`."""
+    def permutations(input: "str | list") -> set:
+        """Returns a set of permutations for a input string or list `input`."""
         return set(Combinatorics.swaps(input, 0, [], Combinatorics.factorial(len(input))))
     def is_permutation(original: str, compare: str):
         if len(original) != len(compare): return False
