@@ -76,12 +76,10 @@ class Combinatorics:
         return set(Combinatorics.swaps(input, 0, [], Combinatorics.factorial(len(input))))
     def is_permutation(original: str, compare: str):
         if len(original) != len(compare): return False
-        comparearr = [char for char in compare]
         for char in original:
-            try:
-                comparearr.remove(char)
-            except ValueError:
+            if original.count(char) != compare.count(char):
                 return False
+            original.replace(char, "")
         return True
 class Factors:
     def prime_factors(num: int=1, initial: list=[], distinct: bool=False):
