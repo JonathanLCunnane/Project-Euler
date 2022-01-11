@@ -1,5 +1,33 @@
 from time import perf_counter
 
+def find_smallest_path(matrix):
+    matrix_size = len(matrix)
+    for x in range(0, matrix_size):
+        for y in range(0, matrix_size):
+            if x == 0:
+                if y == 0:
+                    continue
+
+            check_one_x = x - 1
+            check_one_y = y
+            check_two_x = x
+            check_two_y = y - 1
+            curr = matrix[x][y]
+
+            if 0 <= check_one_x:
+                if 0 <= check_two_y:
+                    matrix[x][y] = min([curr + matrix[check_one_x][check_one_y], curr + matrix[check_two_x][check_two_y]])
+                else:
+                    matrix[x][y] = curr + matrix[check_one_x][check_one_y]
+            else:
+                matrix[x][y] = curr + matrix[check_two_x][check_two_y]
+
+            if x == matrix_size - 1:
+                if y == matrix_size - 1:
+                    return matrix[x][y]
+
+
+
 # region
 string = """4445,2697,5115,718,2209,2212,654,4348,3079,6821,7668,3276,8874,4190,3785,2752,9473,7817,9137,496,7338,3434,7152,4355,4552,7917,7827,2460,2350,691,3514,5880,3145,7633,7199,3783,5066,7487,3285,1084,8985,760,872,8609,8051,1134,9536,5750,9716,9371,7619,5617,275,9721,2997,2698,1887,8825,6372,3014,2113,7122,7050,6775,5948,2758,1219,3539,348,7989,2735,9862,1263,8089,6401,9462,3168,2758,3748,5870
 1096,20,1318,7586,5167,2642,1443,5741,7621,7030,5526,4244,2348,4641,9827,2448,6918,5883,3737,300,7116,6531,567,5997,3971,6623,820,6148,3287,1874,7981,8424,7672,7575,6797,6717,1078,5008,4051,8795,5820,346,1851,6463,2117,6058,3407,8211,117,4822,1317,4377,4434,5925,8341,4800,1175,4173,690,8978,7470,1295,3799,8724,3509,9849,618,3320,7068,9633,2384,7175,544,6583,1908,9983,481,4187,9353,9377
@@ -83,31 +111,7 @@ string = """4445,2697,5115,718,2209,2212,654,4348,3079,6821,7668,3276,8874,4190,
 5304,5499,564,2801,679,2653,1783,3608,7359,7797,3284,796,3222,437,7185,6135,8571,2778,7488,5746,678,6140,861,7750,803,9859,9918,2425,3734,2698,9005,4864,9818,6743,2475,132,9486,3825,5472,919,292,4411,7213,7699,6435,9019,6769,1388,802,2124,1345,8493,9487,8558,7061,8777,8833,2427,2238,5409,4957,8503,3171,7622,5779,6145,2417,5873,5563,5693,9574,9491,1937,7384,4563,6842,5432,2751,3406,7981"""
 matrix = [[int(i) for i in x.split(",")] for x in string.split("\n")]
 # endregion
-done = False
 start = perf_counter()
-def find_smallest_path(matrix):
-    matrix_size = len(matrix)
-    for x in range(0, matrix_size):
-        for y in range(0, matrix_size):
-            if x == 0:
-                if y == 0:
-                    continue
-
-            check_one_x = x - 1
-            check_one_y = y
-            check_two_x = x
-            check_two_y = y - 1
-            curr = matrix[x][y]
-
-            if 0 <= check_one_x:
-                if 0 <= check_two_y:
-                    matrix[x][y] = min([curr + matrix[check_one_x][check_one_y], curr + matrix[check_two_x][check_two_y]])
-                else:
-                    matrix[x][y] = curr + matrix[check_one_x][check_one_y]
-            else:
-                matrix[x][y] = curr + matrix[check_two_x][check_two_y]
-
-            if x == matrix_size - 1:
-                if y == matrix_size - 1:
-                    return matrix[x][y]
-print(find_smallest_path(matrix), perf_counter() - start)
+smallest_path = find_smallest_path(matrix)
+end = (((perf_counter() - start)*100000)//1)/100
+print(f"The smallest path in the matrix is {smallest_path}. This took {end}ms")
