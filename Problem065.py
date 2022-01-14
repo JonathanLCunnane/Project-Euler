@@ -17,4 +17,4 @@ for an in e[1][1:]:
     numerator_nm2, numerator_nm1, denominator_nm2, denominator_nm1 = numerator_nm1, numerator_n, denominator_nm1, denominator_n
 end = perf_counter()
 elapsed_ms = (((end - start)*100000)//1)/100
-print(f"The 100th approximation for e using continued fractions is: {numerator_n}/{denominator_n}.\nThe sum of digits in the numerator is: {sum([int(digit) for digit in str(numerator_n)])}.\nThis took {elapsed_ms}ms") 
+print(f"The {upto}th approximation for e using continued fractions is: {numerator_n}/{denominator_n}.\nThe sum of digits in the numerator is: {sum([int(digit) for digit in str(numerator_n)])}.\nThis took {elapsed_ms}ms") 
