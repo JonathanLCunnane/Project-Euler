@@ -75,11 +75,25 @@ class Combinatorics:
         """Returns a set of permutations for a input string or list `input`."""
         return set(Combinatorics.swaps(input, 0, [], Combinatorics.factorial(len(input))))
     def is_permutation(original: str, compare: str):
+        """Returns `True` if `original` is a permutation of `compare`, otherwise returns `False`."""
         if len(original) != len(compare): return False
         for char in original:
             if original.count(char) != compare.count(char):
                 return False
             original.replace(char, "")
+        return True
+    def is_int_permutation(original: int, compare: int):
+        """Returns `True` if `original` is a permutation of `compare`, otherwise returns `False`."""
+        str_original = str(original)
+        str_compare = str(compare)
+        if len(str_original) != len(str_compare):
+            return False
+        for digit in range(10):
+            curr = str(digit)
+            digit_count_original = str_original.count(curr)
+            digit_count_compare = str_compare.count(curr)
+            if digit_count_original != digit_count_compare:
+                return False
         return True
 class Factors:
     def prime_factors(num: int=1, initial: list=[], distinct: bool=False):
