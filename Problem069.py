@@ -19,7 +19,7 @@ for num in range(1, upto+1):
         max_n_over_fn = n_over_fn
         max_n = num
 end = perf_counter()
-elapsed_ms = elapsed_ms = (((end - start)*100000)//1)/100
+elapsed_ms = (((end - start)*100000)//1)/100
 print(f"The n for which n/phi(n) is maximised is:\t{max_n}\nwith the maximum n/phi(n) being:\t{max_n_over_fn}.\nThis took {elapsed_ms}ms")
 
 # looking back on this problem, the solution for which n/phi(n) is largest is when phi(n) is smallest, i.e when n has the smallest amonut of relatively prime factors.
