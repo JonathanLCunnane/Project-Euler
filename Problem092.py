@@ -1,7 +1,5 @@
 from time import perf_counter
 
-from numpy import square
-
 
 def square_sum(num: int):
     sum = 0
