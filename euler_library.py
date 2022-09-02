@@ -23,7 +23,7 @@ class Primes:
         if num % 2 == 0 or num % 3 == 0:
             return False
         # we use 5 as we will use check to be the 6k - 1 term, therefore adding two to check in (check + 2) gives the 6k  
-        for check in range(5, int(num ** 0.5), 6):
+        for check in range(5, int(num ** 0.5) + 1, 6):
             if num % check == 0:
                 return False
             if num % (check + 2) == 0:
